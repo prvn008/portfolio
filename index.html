@@ -6,7 +6,7 @@
 <title>Praveen Singh — Data Analyst</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0E1013;
@@ -40,7 +40,7 @@
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
   }
@@ -72,7 +72,7 @@
   .project:hover::before { opacity: 1; animation-play-state: running; }
   @keyframes spin { to { --angle: 360deg; } }
   @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
-  h1, h2, h3 { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; letter-spacing: -0.01em; margin: 0; font-optical-sizing: auto; }
   .mono { font-family: 'JetBrains Mono', monospace; }
   a { color: inherit; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
@@ -103,7 +103,7 @@
     border-bottom: 1px solid var(--line);
   }
   .nav-inner { max-width: 1080px; margin: 0 auto; padding: 16px clamp(20px, 5vw, 48px); display: flex; align-items: center; justify-content: space-between; }
-  .nav-name { font-size: 1.05rem; font-weight: 600; }
+  .nav-name { font-size: 1.1rem; font-weight: 600; font-family: 'Fraunces', serif; font-style: italic; }
   .nav-links { display: flex; gap: 24px; font-size: 0.92rem; }
   .nav-links a { text-decoration: none; color: var(--text-dim); transition: color .2s; position: relative; }
   .nav-links a::after { content:""; position:absolute; left:0; bottom:-4px; width:0; height:1.5px; background:var(--amber); transition: width .25s ease; }
@@ -139,6 +139,36 @@
 
   .rig-wrap { perspective: 900px; }
   .rig { height: 320px; display: flex; align-items: flex-end; justify-content: center; transition: transform .1s linear; will-change: transform; }
+
+  /* Photo frame — animated gradient ring, ready for a real portrait */
+  .photo-card { perspective: 1000px; display: flex; justify-content: center; }
+  .photo-frame {
+    position: relative;
+    width: min(300px, 78%);
+    aspect-ratio: 4 / 5;
+    border-radius: 22px;
+    padding: 3px;
+    background: conic-gradient(from var(--angle, 0deg), var(--blue), var(--cyan), var(--amber), var(--blue));
+    animation: spin 7s linear infinite;
+    transform-style: preserve-3d;
+    transition: transform .2s ease;
+    will-change: transform;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,.6);
+  }
+  .photo-frame:hover { transform: scale(1.035); }
+  .photo-inner {
+    width: 100%; height: 100%; border-radius: 19px; overflow: hidden;
+    background: var(--bg-raised);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .photo-inner img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+  .photo-frame:hover .photo-inner img { transform: scale(1.08); }
+  .photo-placeholder {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 3.6rem;
+    color: var(--text-dim); letter-spacing: -0.02em;
+  }
+  .photo-caption { text-align: center; margin-top: 14px; font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
   .bars { display: flex; align-items: flex-end; gap: 14px; transform: rotateX(52deg) rotateZ(-32deg); transform-style: preserve-3d; }
   .bar { width: 30px; border-radius: 3px 3px 0 0; transform-style: preserve-3d; position: relative; animation: rise 1.4s cubic-bezier(.2,.9,.25,1) both; }
   .bar::after { content:""; position:absolute; top:-8px; left:0; right:0; height:8px; background:inherit; filter:brightness(1.35); transform:rotateX(90deg) translateZ(4px); transform-origin: top; }
@@ -211,6 +241,84 @@
   .contact-list a:hover { color: var(--blue); }
   .quote { border-left: 2px solid var(--amber); padding-left: 18px; color: var(--text-dim); font-size: 0.95rem; max-width: 44ch; }
 
+  /* ---------- Contact form ---------- */
+  .form-card {
+    position: relative;
+    border-radius: 18px;
+    padding: 2px;
+    background: conic-gradient(from 210deg, var(--blue), var(--cyan), var(--amber), var(--blue));
+    margin-top: 28px;
+  }
+  .form-inner {
+    background: var(--bg-raised);
+    border-radius: 16px;
+    padding: clamp(22px, 4vw, 34px);
+  }
+  .field { position: relative; margin-bottom: 26px; }
+  .field input, .field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--line);
+    color: var(--text);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 1rem;
+    padding: 10px 2px 10px 2px;
+    outline: none;
+    transition: border-color .25s ease;
+    resize: vertical;
+  }
+  .field textarea { min-height: 96px; }
+  .field label {
+    position: absolute; left: 2px; top: 10px;
+    color: var(--text-dim);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: transform .2s ease, font-size .2s ease, color .2s ease;
+    transform-origin: left top;
+  }
+  .field input:focus, .field textarea:focus { border-bottom-color: var(--cyan); }
+  .field input:focus + label,
+  .field input:not(:placeholder-shown) + label,
+  .field textarea:focus + label,
+  .field textarea:not(:placeholder-shown) + label {
+    transform: translateY(-20px) scale(0.8);
+    color: var(--cyan);
+  }
+  .field-underline { position: relative; height: 2px; margin-top: -1.5px; overflow: hidden; }
+  .field-underline::after {
+    content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--cyan), var(--amber));
+    transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+  }
+  .field:focus-within .field-underline::after { transform: scaleX(1); }
+
+  .submit-btn {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 28px;
+    border: none; border-radius: 10px;
+    font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 0.98rem;
+    color: #06090F; cursor: pointer;
+    background: linear-gradient(120deg, var(--blue), var(--cyan) 50%, var(--amber));
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+    transition: transform .2s cubic-bezier(.2,.9,.3,1.3), box-shadow .25s ease;
+  }
+  .submit-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 30px -12px color-mix(in srgb, var(--cyan) 60%, transparent); }
+  .submit-btn:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+  @keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .spinner { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(6,9,15,.35); border-top-color: #06090F; animation: spin2 .7s linear infinite; display: none; }
+  @keyframes spin2 { to { transform: rotate(360deg); } }
+  .submit-btn.loading .spinner { display: inline-block; }
+  .submit-btn.loading .btn-label { opacity: .8; }
+
+  .form-msg { margin-top: 16px; font-size: 0.9rem; display: none; align-items: center; gap: 8px; }
+  .form-msg.show { display: flex; }
+  .form-msg.success { color: var(--cyan); }
+  .form-msg.error { color: var(--amber); }
+  .honeypot { position: absolute; left: -9999px; top: -9999px; }
+
   footer { border-top: 1px solid var(--line); padding: 28px 0 calc(28px + env(safe-area-inset-bottom, 0px)); color: var(--text-dim); font-size: 0.82rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -251,12 +359,16 @@
         <a href="#contact" class="btn btn-ghost">Get in touch</a>
       </div>
     </div>
-    <div class="rig-wrap">
-      <div class="rig" id="heroRig" aria-hidden="true">
-        <div class="bars">
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="photo-card">
+      <div>
+        <div class="photo-frame" id="photoFrame">
+          <div class="photo-inner">
+            <!-- To add your real photo: replace the line below with
+                 <img src="data:image/jpeg;base64,PASTE_YOUR_BASE64_HERE" alt="Praveen Singh"> -->
+            <div class="photo-placeholder">PS</div>
+          </div>
         </div>
+        <div class="photo-caption">Praveen Singh · Data Analyst</div>
       </div>
     </div>
   </section>
@@ -265,8 +377,8 @@
     <div class="about-grid">
       <div data-reveal>
         <h2 style="font-size:1.4rem;margin-bottom:14px;">About</h2>
-        <p>I studied B.Tech Computer Science with a focus on Data Analytics, graduating with an 8.06 CGPA, and joined NS Buildtech () as a fresher on ERP data entry. From there I built my way into the company's only dedicated analytics role — covering Power BI reporting, Python forecasting, and ERP data structure across all 15 plants.</p>
-        <p> Gurugram.</p>
+        <p>I studied B.Tech Computer Science with a focus on Data Analytics, graduating with an 8.06 CGPA, and joined a construction and ready-mix concrete company as a fresher on ERP data entry. From there I built my way into the company's only dedicated analytics role — covering Power BI reporting, Python forecasting, and ERP data structure across all 15 plants.</p>
+        <p>Originally from Rishikesh, Uttarakhand, now based in Gurugram.</p>
       </div>
       <div data-reveal-group class="stat-row" style="margin-top:0;">
         <div class="stat"><div class="num" data-count-to="15">0</div><div class="label">RMC plants covered</div></div>
@@ -299,17 +411,17 @@
     <div class="timeline" data-reveal-group>
       <div class="tl-item">
         <div class="tl-date">Current</div>
-        <h3>Site ERP In-Charge, </h3>
+        <h3>Site ERP In-Charge</h3>
         <p>Leading a phased StrategicERP rollout at site level — GRN entry, purchase and inventory modules — and maintaining log books across all 15 plants that feed fuel-efficiency and utilisation analytics.</p>
       </div>
       <div class="tl-item">
         <div class="tl-date">Ongoing</div>
-        <h3>Data Analyst,</h3>
+        <h3>Data Analyst</h3>
         <p>Built and delivered the Procurement Command Center, a Power BI and Excel suite covering over ₹12 crore in procurement spend, and a Python forecasting model for RMC batch demand across plants.</p>
       </div>
       <div class="tl-item">
         <div class="tl-date">Earlier</div>
-        <h3>ERP Data Entry, NS Buildtech</h3>
+        <h3>ERP Data Entry</h3>
         <p>Joined as a fresher, manually processing around 500 bills into StrategicERP while learning the company's procurement data structure from the ground up.</p>
       </div>
     </div>
@@ -325,7 +437,7 @@
         <span class="tag">Power BI</span>
         <h3>Procurement Command Center</h3>
         <p>Analytics suite covering ₹12+ crore in procurement spend, used as a live consulting demo.</p>
-        <div class="meta"></div>
+        <div class="meta">Company project</div>
       </div>
       <div class="project amber">
         <span class="tag">Python</span>
@@ -364,13 +476,46 @@
     <div class="contact-grid">
       <div data-reveal>
         <h2 style="font-size:1.4rem;margin-bottom:14px;">Let's talk</h2>
-        <p class="quote">Open to analytics consulting for construction and manufacturing SMEs, alongside my work at construction company and real state.</p>
+        <p class="quote">Open to analytics consulting for construction and manufacturing SMEs, alongside my full-time analytics work.</p>
+
+        <div class="form-card">
+          <div class="form-inner">
+            <form id="contactForm" action="https://formsubmit.co/ajax/depp4349@gmail.com" method="POST">
+              <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off">
+              <input type="hidden" name="_subject" value="New message from your portfolio site">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+
+              <div class="field">
+                <input type="text" id="fName" name="Name" placeholder=" " required>
+                <label for="fName">Your name</label>
+                <div class="field-underline"></div>
+              </div>
+              <div class="field">
+                <input type="email" id="fEmail" name="Email" placeholder=" " required>
+                <label for="fEmail">Your email</label>
+                <div class="field-underline"></div>
+              </div>
+              <div class="field">
+                <textarea id="fMessage" name="Message" placeholder=" " required></textarea>
+                <label for="fMessage">Message</label>
+                <div class="field-underline"></div>
+              </div>
+
+              <button type="submit" class="submit-btn" id="submitBtn">
+                <span class="btn-label">Send message</span>
+                <span class="spinner"></span>
+              </button>
+              <div class="form-msg" id="formMsg"></div>
+            </form>
+          </div>
+        </div>
       </div>
       <ul class="contact-list" data-reveal-group>
-        <li><span class="k">Email</span><span class="v"><a href="mailto:depp4349@gmail.com"></a></span></li>
-        <li><span class="k">Phone</span><span class="v"><a href="tel:+918384821987"></a></span></li>
+        <li><span class="k">Email</span><span class="v"><a href="mailto:depp4349@gmail.com">depp4349@gmail.com</a></span></li>
         <li><span class="k">Location</span><span class="v">Gurugram, India</span></li>
         <li><span class="k">GitHub</span><span class="v"><a href="https://github.com/prvn008" target="_blank" rel="noopener">prvn008</a></span></li>
+        <li><span class="k">HackerRank</span><span class="v">PRVN014</span></li>
       </ul>
     </div>
   </section>
@@ -379,8 +524,8 @@
 
 <footer>
   <div class="wrap" style="display:flex;justify-content:space-between;width:100%;flex-wrap:wrap;gap:10px;padding-left:0;padding-right:0;">
-    <span>Praveen Singh — Data Analyst and Business Analyst</span>
-    <span>Gurugram</span>
+    <span>Praveen Singh — Data Analyst</span>
+    <span>Gurugram · Rishikesh</span>
   </div>
 </footer>
 
@@ -542,7 +687,7 @@
   }
 
   // Cursor tilt + zoom on project & skill cards
-  var tiltEls = document.querySelectorAll('.project, .skill');
+  var tiltEls = document.querySelectorAll('.project, .skill, #photoFrame');
   tiltEls.forEach(function(card){
     card.addEventListener('mousemove', function(e){
       if (reduceMotion) return;
@@ -556,7 +701,40 @@
     });
   });
 
-  // Cycling word in hero role line
+  // Contact form — submit via FormSubmit AJAX, no page reload
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = document.getElementById('submitBtn');
+      var msg = document.getElementById('formMsg');
+      btn.classList.add('loading');
+      btn.disabled = true;
+      msg.className = 'form-msg';
+      msg.textContent = '';
+
+      var data = new FormData(contactForm);
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(res){
+        if (res.ok) {
+          msg.textContent = "Thanks — your message is on its way. I'll get back to you soon.";
+          msg.className = 'form-msg show success';
+          contactForm.reset();
+        } else {
+          throw new Error('Request failed');
+        }
+      }).catch(function(){
+        msg.textContent = "Something went wrong. Please email depp4349@gmail.com directly.";
+        msg.className = 'form-msg show error';
+      }).finally(function(){
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      });
+    });
+  }
   var words = ['dashboards.', 'forecasts.', 'decisions.', 'clarity.'];
   var cycleEl = document.getElementById('cycleText');
   if (cycleEl && !reduceMotion) {
