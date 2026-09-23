@@ -9,6 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
+    --bg: #F1EFEA;
+    --bg-raised: #E7E4DC;
+    --concrete: #6C6E75;
+    --concrete-dim: #B6B8BE;
+    --text: #14161A;
+    --text-dim: #5C5F66;
+    --blue: #2F63D6;
+    --amber: #E06A1F;
+    --cyan: #1F9E85;
+    --line: rgba(20,22,26,0.12);
+    --card: rgba(20,22,26,0.035);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root[data-theme="dark"] {
     --bg: #0E1013;
     --bg-raised: #16191E;
     --concrete: #8B8D94;
@@ -20,18 +35,6 @@
     --cyan: #43E0C0;
     --line: rgba(241,239,234,0.10);
     --card: rgba(255,255,255,0.035);
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  :root[data-theme="light"] {
-    --bg: #F1EFEA;
-    --bg-raised: #E7E4DC;
-    --concrete: #6C6E75;
-    --concrete-dim: #B6B8BE;
-    --text: #14161A;
-    --text-dim: #5C5F66;
-    --line: rgba(20,22,26,0.12);
-    --card: rgba(20,22,26,0.035);
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
@@ -378,7 +381,7 @@
       <div data-reveal>
         <h2 style="font-size:1.4rem;margin-bottom:14px;">About</h2>
         <p>I studied B.Tech Computer Science with a focus on Data Analytics, graduating with an 8.06 CGPA, and joined a construction and ready-mix concrete company as a fresher on ERP data entry. From there I built my way into the company's only dedicated analytics role — covering Power BI reporting, Python forecasting, and ERP data structure across all 15 plants.</p>
-        <p>Originally from Uttarakhand, now based in Gurugram.</p>
+        <p>Originally from  Uttarakhand, now based in Gurugram.</p>
       </div>
       <div data-reveal-group class="stat-row" style="margin-top:0;">
         <div class="stat"><div class="num" data-count-to="15">0</div><div class="label">RMC plants covered</div></div>
@@ -535,12 +538,12 @@
   var themeBtn = document.getElementById('themeToggle');
   function applyTheme(t){
     if(t){ root.setAttribute('data-theme', t); } else { root.removeAttribute('data-theme'); }
-    themeBtn.textContent = (t === 'light') ? 'Light' : 'Dark';
+    themeBtn.textContent = (t === 'dark') ? 'Dark' : 'Light';
   }
   applyTheme(null);
   themeBtn.addEventListener('click', function(){
     var cur = root.getAttribute('data-theme');
-    applyTheme(cur === 'light' ? 'dark' : 'light');
+    applyTheme(cur === 'dark' ? null : 'dark');
   });
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
